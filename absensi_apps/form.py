@@ -1,6 +1,5 @@
 from django import forms
-from .models import Scan_Absen
-
+from .models import Scan_Absen, Nik
 
 class ScanForm(forms.ModelForm):
     class Meta:
@@ -8,6 +7,11 @@ class ScanForm(forms.ModelForm):
         fields = ('pilihan',)
 
         widgets = {
-            'pilihan':forms.Select(
-                attrs={'class':'form-control'}),
+            
+            'pilihan': forms.Select(
+                attrs={'class': 'form-control'}),
         }
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['nik'].queryset = Nik.objects.none()

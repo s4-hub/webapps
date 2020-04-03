@@ -10,7 +10,7 @@ Absen Jam Masuk dan Jam Pulang
 <div class="col-lg-6">
     <div class="card">
         <div class="card-header">
-            <strong>Absensi</strong> {{cuser}}
+            <strong>Absensi</strong> {% for namas in nama %}{{namas.get_full_name}}{% endfor %} - {{nik}}
         </div>
         <div class="card-body card-block">
             <form method="post" class="form-horizontal">
@@ -22,6 +22,7 @@ Absen Jam Masuk dan Jam Pulang
                     {{form.pilihan}}
                     </div>
                 </div>
+                
                 <div class="card-footer">
                 <button type="submit" class="btn btn-primary btn-sm">
                     <i class="fa fa-dot-circle-o"></i> Submit

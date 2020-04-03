@@ -33,7 +33,11 @@
                     <div class="col-lg-10">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Absensi {{cuser}}</strong>
+                                <strong class="card-title">Absensi {{cuser}} - 
+                                {% for namas in nama %}
+                                    {{namas.get_full_name}}
+                                {% endfor %}
+                                </strong>
                             </div>
                             <div class="table-stats order-table ov-h">
                                 <table class="table ">
@@ -41,6 +45,7 @@
                                         <tr>
                                             <th class="serial">No</th>
                                             <th>Kode User</th>
+                                            <th>NPK</th>
                                             <th>Nama</th>
                                             <th>Jenis Absen</th>
                                             <th>Jam Masuk/</br>Keluar</th>
@@ -54,6 +59,7 @@
                                             <td class="serial">{{forloop.counter}}</td>
                                             
                                             <td><span class="name">{{data.user}}</span></td>
+                                            <td><span class="serial">{{data.nik}}</span></td>
                                             <td>  <span class="name">{{data.user.get_full_name}}</span> </td>
                                             <td>
                                                 {{data.get_pilihan_display}}

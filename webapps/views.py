@@ -4,17 +4,32 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .form import UsersForm
+# from absensi_apps.form import KaryawanForm
+# from absensi_apps.models import Karyawan
 
 @login_required(login_url='login')
 def index(request):
 
     return render(request, 'index.html')
 
+def register(request):
+    if request.method == 'POST':
+        form = UsersForm(request.POST)
+
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.save()
+
+            return redirect('login')
+    else:
+        form = UsersForm()
+    return render(request, 'register.html',{'form':form})
+
 def signin(request):
 
     if request.method == 'POST':
         form = UsersForm(request.POST)
-
+        print(request.POST)
         username = request.POST['username']
         password = request.POST['password']
 
