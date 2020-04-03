@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Daftar Permasalahan Kacab Langsa
+{% endblock title %}
+
+{% block content %}
+<div classs="container">
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">Example Form</div>
+            <div class="card-body card-block">
+                <form method="post">
+                    {% csrf_token %}
+                    <table class="table table-bordered">
+                        <tr>
+                            <td>
+                                {{form.tgl_kendala}}
+                            </td>
+                            <td>
+                                {{form.bidang}}
+                            </td>
+                            <td id="keterangan">
+                                {{form.keterangan}}
+                            </td>
+                        </tr>
+                        
+                    </table>
+                    <div class="form-actions form-group"><button type="submit" class="btn btn-secondary btn-sm">Submit</button></div>
+                </form>
+                <div><button name="add" id="add" class="btn btn-success">Tambah</button></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function(){
+        $("#add").click(function(e){
+            $("#keterangan").append('<td id="keterangan">{{form.keterangan}}</td></tr><tr><td> <button name="remove" id="remove" class="btn btn-danger btn_remove">X</button></td></tr>');
+        });
+    $('body').on('click','#remove',function(e){
+        $(this).attr("id").remove();
+    });
+    });
+
+</script>
+
+{% endblock content %}
+
+

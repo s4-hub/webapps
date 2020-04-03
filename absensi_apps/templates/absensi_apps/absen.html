@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Absen Jam Masuk dan Jam Pulang
+{% endblock title %}
+
+{% block content %}
+
+
+<div class="col-lg-6">
+    <div class="card">
+        <div class="card-header">
+            <strong>Absensi</strong> {{cuser}}
+        </div>
+        <div class="card-body card-block">
+            <form method="post" class="form-horizontal">
+                {% csrf_token %}
+                
+                 <div class="row form-group">
+                    <div class="col col-md-3"><label for="selectLg" class=" form-control-label">Jam Absen</label></div>
+                    <div class="col-12 col-md-9">
+                    {{form.pilihan}}
+                    </div>
+                </div>
+                <div class="card-footer">
+                <button type="submit" class="btn btn-primary btn-sm">
+                    <i class="fa fa-dot-circle-o"></i> Submit
+                </button>
+            </div>
+            </form>
+            
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
