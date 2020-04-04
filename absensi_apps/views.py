@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.http.response import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -7,20 +8,29 @@ from .form import ScanForm
 import datetime
 # Create your views here.
 
+@login_required(login_url='login')
 def index(request):
     
     cuser = request.user
-    datas = Scan_Absen.objects.select_related('user').filter(user_id=cuser)
-    nama = User.objects.filter(username=cuser)
-    args = {
-        'cuser':cuser,
-        'datas':datas,
-        'nama':nama
-    
-    }
-    
-    return render(request, 'absensi_apps/index.html', args)
+    admin = User.objects.filter(username=cuser,is_superuser=True)
+    if admin:
+        datas = Scan_Absen.objects.all().order_by('user__first_name')
 
+        return render(request, 'absensi_apps/index.html', {'datas':datas})
+    else:
+        datas = Scan_Absen.objects.select_related('user').filter(user_id=cuser)
+        nama = User.objects.filter(username=cuser)
+
+        args = {
+            'cuser':cuser,
+            'datas':datas,
+            'nama':nama
+        
+        }
+        
+        return render(request, 'absensi_apps/index.html', args)
+
+@login_required(login_url='login')
 def Scan(request):
 
     cuser = request.user
@@ -39,7 +49,7 @@ def Scan(request):
             post.nik = nik
             post.save()
 
-            return redirect('absensi:list')
+            return HttpResponseRedirect(reverse('absensi:list'))
         
     else:
         form = ScanForm()
