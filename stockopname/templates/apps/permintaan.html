@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Form Permintaan Barang
+{% endblock title %}
+
+{% block head %}
+ <!-- Favicon icon -->
+    <link rel="icon" href="{% static 'images\favicon.ico' %}" type="image/x-icon">
+    <!-- Google font--><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+    <!-- Required Fremwork -->
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components\bootstrap\css\bootstrap.min.css' %}">
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="{% static 'icon\themify-icons\themify-icons.css' %}">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="{% static 'icon\icofont\css\icofont.css' %}">
+    <!-- feather Awesome -->
+    <link rel="stylesheet" type="text/css" href="{% static 'icon\feather\css\feather.css' %}">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css\style.css' %}">
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css\jquery.mCustomScrollbar.css' %}">
+{% endblock head %}
+
+{% block content %}
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- Main-body start -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- Page-header start -->
+                <div class="page-header">
+                    <div class="row align-items-end">
+                        <div class="col-lg-8">
+                            <div class="page-header-title">
+                                <div class="d-inline">
+                                    <h4>Basic Form Inputs</h4>
+                                    <span>Lorem ipsum dolor sit <code>amet</code>, consectetur adipisicing elit</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="page-header-breadcrumb">
+                                <ul class="breadcrumb-title">
+                                    <li class="breadcrumb-item">
+                                        <a href="index-1.htm"> <i class="feather icon-home"></i> </a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#!">Form Components</a>
+                                    </li>
+                                    <li class="breadcrumb-item"><a href="#!">Form Components</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- page header end -->
+
+                <!-- page body start -->
+                <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Basic Form Inputs card start -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Basic Form Inputs</h5>
+                                    <span>Add class of <code>.form-control</code> with <code>&lt;input&gt;</code> tag</span>
+
+
+                                    <div class="card-header-right">
+                                        <i class="icofont icofont-spinner-alt-5"></i>
+                                    </div>
+
+                                </div>
+                                <div class="card-block">
+                                    <h4 class="sub-title">Basic Inputs</h4>
+                                    <form method="POST">
+                                        {% csrf_token %}
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Produk</label>
+                                            <div class="col-sm-10">
+                                                {{form.produk}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-2 col-form-label">Jumlah</label>
+                                            <div class="col-sm-10">
+                                                {{form.jumlah}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <button type="submit">Save</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- page body end -->
+            </div>
+        </div>
+    </div>
+</div>            
+{% endblock content %}
+
+{% block extra_js %}
+
+<!-- Required Jquery -->
+    <script type="text/javascript" src="{% static 'bower_components\jquery\js\jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components\jquery-ui\js\jquery-ui.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components\popper.js\js\popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components\bootstrap\js\bootstrap.min.js' %}"></script>
+    <!-- jquery slimscroll js -->
+    <script type="text/javascript" src="{% static 'bower_components\jquery-slimscroll\js\jquery.slimscroll.js' %}"></script>
+    <!-- modernizr js -->
+    <script type="text/javascript" src="{% static 'bower_components\modernizr\js\modernizr.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components\modernizr\js\css-scrollbars.js' %}"></script>
+
+    <!-- Validation js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script type="text/javascript" src="{% static 'pages\form-validation\validate.js' %}"></script>
+    <!-- i18next.min.js -->
+    <script type="text/javascript" src="{% static 'bower_components\i18next\js\i18next.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components\i18next-xhr-backend\js\i18nextXHRBackend.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components\i18next-browser-languagedetector\js\i18nextBrowserLanguageDetector.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bower_components\jquery-i18next\js\jquery-i18next.min.js' %}"></script>
+    <!-- Custom js -->
+    <script type="text/javascript" src="{% static 'pages\form-validation\form-validation.js' %}"></script>
+
+    <script src="{% static 'js\pcoded.min.js' %}"></script>
+    <script src="{% static 'js\vartical-layout.min.js' %}"></script>
+    <script src="{% static 'js\jquery.mCustomScrollbar.concat.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js\script.js' %}"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-23581568-13');
+</script>
+
+{% endblock extra_js %}
