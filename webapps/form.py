@@ -12,9 +12,9 @@ class UsersForm(forms.ModelForm):
             'username': forms.TextInput(
                 attrs={'class': 'form-control',
                 'placeholder': 'Masukkan Username',
-                'type': 'username'}),
+                'type': 'username', 'required':''}),
             'password': forms.TextInput(
                 attrs={'class': 'form-control',
                 'placeholder': 'Masukkan Password',
-                'type': 'password'}),
+                'type': 'password', 'required':''}),
         }

@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'covid19_apps.apps.Covid19AppsConfig',
     'absensi_apps.apps.AbsensiAppsConfig',
+    'stockopname.apps.StockopnameConfig',
 ]
 
 MIDDLEWARE = [

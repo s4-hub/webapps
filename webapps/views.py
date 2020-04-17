@@ -9,8 +9,9 @@ from .form import UsersForm
 
 @login_required(login_url='login')
 def index(request):
+    
 
-    return render(request, 'index.html')
+    return render(request, 'absensi/index.html')
 
 def register(request):
     if request.method == 'POST':
@@ -29,7 +30,7 @@ def signin(request):
 
     if request.method == 'POST':
         form = UsersForm(request.POST)
-        print(request.POST)
+        
         username = request.POST['username']
         password = request.POST['password']
 
@@ -53,3 +54,10 @@ def singout(request):
     logout(request)
     messages.add_message(request, messages.INFO, 'Akun anda berhasil keluar')
     return redirect('login')
+
+# def navbar(request):
+
+#     cuser = request.user
+#     admin = User.objects.filter(username=cuser,is_superuser=True)
+
+#     return render(request, 'navbar.html', {'admin':admin}) 
