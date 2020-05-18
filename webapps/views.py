@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
-from .form import UsersForm
+from .form import LoginForm
 # from absensi_apps.form import KaryawanForm
 # from absensi_apps.models import Karyawan
 
@@ -15,7 +15,7 @@ def index(request):
 
 def register(request):
     if request.method == 'POST':
-        form = UsersForm(request.POST)
+        form = LoginForm(request.POST)
 
         if form.is_valid():
             post = form.save(commit=False)
@@ -23,13 +23,13 @@ def register(request):
 
             return redirect('login')
     else:
-        form = UsersForm()
+        form = LoginForm()
     return render(request, 'register.html',{'form':form})
 
 def signin(request):
 
     if request.method == 'POST':
-        form = UsersForm(request.POST)
+        form = LoginForm(request.POST)
         
         username = request.POST['username']
         password = request.POST['password']
@@ -45,7 +45,7 @@ def signin(request):
             messages.error(request, f'Username atau password anda salah')
             return redirect ('login')
     else:
-        form = UsersForm()
+        form = LoginForm()
 
     return render(request, 'login.html', {'form':form})
 
@@ -55,9 +55,10 @@ def singout(request):
     messages.add_message(request, messages.INFO, 'Akun anda berhasil keluar')
     return redirect('login')
 
-# def navbar(request):
+def fontawesome(request):
 
-#     cuser = request.user
-#     admin = User.objects.filter(username=cuser,is_superuser=True)
+    return render(request, 'font-fontawesome.html')
 
-#     return render(request, 'navbar.html', {'admin':admin}) 
+def themify(request):
+    
+    return render(request, 'font-themify.html')

@@ -1,5 +1,5 @@
 from django import forms
-from .models import *
+from .models import Produk, Permintaan
 
 
 class ProdukForm(forms.ModelForm):
@@ -8,7 +8,7 @@ class ProdukForm(forms.ModelForm):
         fields = (
             'kategori','nama',
             'jumlah','satuan',
-            'harga',
+            'harga','per_unit',
         )
 
         widgets = {
@@ -16,11 +16,15 @@ class ProdukForm(forms.ModelForm):
                 attrs={'class':'form-control'}),
             'nama':forms.TextInput(
                 attrs={'class':'form-control',
-                'placeholder':'Input Nama Produk'}),
+                'placeholder':'Input Nama Produk',
+                'name':'nama'}),
             'jumlah':forms.TextInput(
                 attrs={'class':'form-control',
                 'placeholder':'Input Jumlah Produk',
                 'name':'numeric','id':'numeric'}),
+            'per_unit':forms.TextInput(
+                attrs={'class':'form-control',
+                'placeholder':'Jumlah item per unit ..'}),
             'satuan':forms.Select(
                 attrs={'class':'form-control'}),
             'harga':forms.TextInput(
@@ -33,12 +37,12 @@ class ProdukForm(forms.ModelForm):
 class PermintaanForm(forms.ModelForm):
     class Meta:
         model = Permintaan
-        fields = ('jumlah', 'produk')
+        fields = ('jumlah',)
 
         widgets = {
             'jumlah':forms.TextInput(
-                attrs={'class':'form-control'}),
-            'produk':forms.Select(
-                attrs={'class':'form-control'})
+                attrs={'class':'form-control',
+                'placeholder':'Jumlah item yang direquest..'}),
+            
             
         }

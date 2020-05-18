@@ -9,11 +9,18 @@ class ProdukAdmin(admin.ModelAdmin):
         'kategori','nama',
         'jumlah','satuan',
         'harga','user',
-        'timestamp','total'
+        'timestamp','status',
+        'total_unit','total'
     )
 
     list_filter = (
         'kategori','nama'
     )
 
-admin.site.register(Permintaan)
+@admin.register(Permintaan)
+class PermintaanAdmin(admin.ModelAdmin):
+    list_display = (
+        'produk','user',
+        'jumlah','tgl',
+        'sisa','HargaSisa',
+    )

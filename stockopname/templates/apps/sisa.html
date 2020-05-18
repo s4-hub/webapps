@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+
+{% block title %}
+Selamat Datang - {{cuser}}
+{% endblock title %}
+
+{% block head %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'font-awesome/css/font-awesome.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/plugins/dataTables/datatables.min.css' %}" rel="stylesheet">
+
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+{% endblock head %}
+
+    {% block content %}
+    {% if messages %}
+    {% for message in messages %}
+        <div class="sufee-alert alert with-close alert-success alert-dismissible fade show">
+            <span class="badge badge-pill badge-success">Success</span>
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+    <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-lg-10">
+                    <h2>Daftar List Stock Opname Kantor Cabang Langsa</h2>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            <a href="{% url 'home' %}">Home</a>
+                        </li>
+                        
+                    </ol>
+                </div>
+                <div class="col-lg-2">
+
+                </div>
+    </div>
+    <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="row">
+                <div class="col-lg-12">
+                <div class="ibox ">
+                    <div class="ibox-title">
+                        <h5>List Stock Opname Kacab Langsa
+                        </h5>
+                        <div class="ibox-tools">
+                            <a class="collapse-link">
+                                <i class="fa fa-chevron-up"></i>
+                            </a>
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-wrench"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-user">
+                                <li><a href="#" class="dropdown-item">Config option 1</a>
+                                </li>
+                                <li><a href="#" class="dropdown-item">Config option 2</a>
+                                </li>
+                            </ul>
+                            <a class="close-link">
+                                <i class="fa fa-times"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover dataTables-example" >
+                    <thead>
+                    <tr>
+                        <th class="serial">No</th>
+                        <th>Tanggal</th>
+                        <th>Nama</th>
+                        <th>Sisa Item</th>
+                        <th>Harga Sisa</th>
+                        
+                        <th>User</th>
+                        
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in datas  %}
+                    <tr class="gradeX">
+                        <td class="serial">{{forloop.counter}}</td>
+                        <td><span class="date">{{data.tgl}}</span></td>
+                        <td><span class="name">{{data.produk.nama}}</span></td>
+                        <td><span class="serial">{{data.sisa}} item</span></td>
+                        <td><span class="serial">Rp. {{data.HargaSisa|intcomma}}</span></td>
+                        
+                        <td>
+                            {{cuser}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                    
+                    </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+   
+    {% endblock content %}
+
+    {% block extra_js %}
+
+    <!-- Mainly scripts -->
+    <script type="text/javascript" src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/popper.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/metisMenu/jquery.metisMenu.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/slimscroll/jquery.slimscroll.min.js' %}"></script>
+
+    <script type="text/javascript" src="{% static 'js/plugins/dataTables/datatables.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/plugins/dataTables/dataTables.bootstrap4.min.js' %}"></script>
+
+    <!-- Custom and plugin javascript -->
+    <script src="{% static 'js/inspinia.js' %}"></script>
+    <script src="{% static 'js/plugins/pace/pace.min.js' %}"></script>
+
+    <!-- Page-Level Scripts -->
+    <script>
+        $(document).ready(function(){
+            $('.dataTables-example').DataTable({
+                pageLength: 25,
+                responsive: true,
+                dom: '<"html5buttons"B>lTfgitp',
+                buttons: [
+                    { extend: 'copy'},
+                    {extend: 'csv'},
+                    {extend: 'excel', title: 'ExampleFile'},
+                    {extend: 'pdf', title: 'ExampleFile'},
+
+                    {extend: 'print',
+                     customize: function (win){
+                            $(win.document.body).addClass('white-bg');
+                            $(win.document.body).css('font-size', '10px');
+
+                            $(win.document.body).find('table')
+                                    .addClass('compact')
+                                    .css('font-size', 'inherit');
+                    }
+                    }
+                ]
+
+            });
+
+        });
+
+    </script>
+
+    {% endblock extra_js %}
+        
+     
+
